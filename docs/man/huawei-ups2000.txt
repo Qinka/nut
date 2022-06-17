@@ -51,8 +51,8 @@ CABLING
 -------
 
 The UPS has a USB port and a RS-232 port. Both are supported, but USB is
-only usable on Linux 5.12 and later, via the *xr_serial* kernel module (see
-subsection *USB* for details). RS-232 is supported on all operating systems.
+only usable on Linux 5.12 and later unless USB-serial chip is CH341, via the *xr_serial* kernel module (see
+subsection *USB* for details). For some produces, the USB-serial chip is CH341. RS-232 is supported on all operating systems.
 
 Only one port can be used at a time. When USB is used, RS-232 should be
 unplugged from the UPS, and vice versa. Further, optional adapter cards,
@@ -69,8 +69,8 @@ USB
 ~~~~
 
 The USB port on the UPS2000 is powered by a MaxLinear/Exar RX21V1410
-USB-to-serial converter chip, it's only supported by Linux 5.12 or
-newer, via the *xr_serial* kernel module.
+USB-to-serial converter chip or CH341 USB-to-serial chip, the former only supported by Linux 5.12 or
+newer, via the *xr_serial* kernel module, while CH341 is supported by Linux 2.6.24 and newer.
 
 When the UPS2000 is connected via USB to a supported Linux system,
 you should see the following logs in *dmesg*.
@@ -78,7 +78,9 @@ you should see the following logs in *dmesg*.
     xr_serial 1-1.2:1.1: xr_serial converter detected
     usb 1-1.2: xr_serial converter now attached to ttyUSB0
 
-The driver must be *xr_serial*. If your system doesn't have the
+Or see the output of *lsusb*.
+
+The driver of RX21V1410 must be *xr_serial*. If your system doesn't have the
 necessary device driver, you will get this message instead:
 
     cdc_acm 1-1.2:1.0: ttyACM0: USB ACM device

@@ -72,7 +72,7 @@
  * model of the UPS2000 series.
  */
 static const char *supported_model[] = {
-	"UPS2000", "UPS2000A",
+	"UPS2000", "UPS2000A", "UPS2000G",
 	NULL
 };
 
